@@ -12,15 +12,12 @@ header {
     letter-spacing: 5.4px;
     font-weight: 400;
     line-height: 100%;
-
 }
 
 h1 {
     color: #FFF;
     font-size: 40px;
     font-style: normal;
-
-    
 }
 
 h2 {
@@ -35,7 +32,7 @@ main {
 
 }
 
-.sun {
+.solen {
     background-color: #ffd029;
     height: 100vh;
     width: 1000%;
@@ -44,20 +41,8 @@ main {
     margin-right: -300px;
 }
 
-/*.mercury {}
-
-.venus {}
-
-.earth {}
-
-.mars {}
-
-.jupiter {}*/
-
-.saturn {
-
+.saturnus {
     margin-bottom: 110px;
-
 }
 
 .saturn_body {
@@ -67,9 +52,5 @@ main {
 
 .saturn_ring {
     transform: translate(-0%, 118%);
-
 }
 
-.uranus {}
-
-.neptune {}
