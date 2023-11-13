@@ -5,34 +5,47 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Solaris</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Secular+One&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora&family=Roboto+Condensed&family=Secular+One&display=swap" rel="stylesheet">
+    
+<link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-    <header>
-        <h1>SOLSYSTEMET</h1>
-        <h2>SOLARIS</h2>
-    </header>
-    <main>
-        <article class="solen"></article>
-        <article class="merkurius"><img src="img.Solaris/Ellipse2.png"></article>
-        <article class="venus"><img src="img.Solaris/Ellipse3.png"></article>
-        <article class="jorden"><img src="img.Solaris/Ellipse4.png"></article>
-        <article class="mars"><img src="img.Solaris/Ellipse5.png"></article>
-        <article class="jupiter"><img src="img.Solaris/Ellipse6.png"></article>
+    <main class="wrapper">
+        <header>
+            <h1>SOLSYSTEMET</h1>
+            <h2>SOLARIS</h2>
+        </header>
+        <section class="all-planets">
+            <article class="solen"></article>
+            <article class="merkurius"><img src="img.Solaris/Ellipse2.png"></article>
+            <article class="venus"><img src="img.Solaris/Ellipse3.png"></article>
+            <article class="jorden"><img src="img.Solaris/Ellipse4.png"></article>
+            <article class="mars"><img src="img.Solaris/Ellipse5.png"></article>
+            <article class="jupiter"><img src="img.Solaris/Ellipse6.png"></article>
 
-        <article class="saturnus">
-            <img class="saturn_ring" src="img.Solaris/Ellipse10.png">
-            <img class="saturn_body" src="img.Solaris/Ellipse7.png">
-        </article>
+            <article class="saturnus">
+                <img class="saturn_ring" src="img.Solaris/Ellipse10.png">
+                <img class="saturn_body" src="img.Solaris/Ellipse7.png">
+            </article>
 
-        <article class="uranus"><img src="img.Solaris/Ellipse8.png"></article>
-        <article class="neptunus"><img src="img.Solaris/Ellipse9.png"></article>
+            <article class="uranus"><img src="img.Solaris/Ellipse8.png"></article>
+            <article class="neptunus"><img src="img.Solaris/Ellipse9.png"></article>
+        </section>
     </main>
+        <div class="planet-info-page" style="display: none;">
+            <button class="close-button">&times;</button>
 
+            <h1 class="planet-name"></h1>
+            <h2 class="planet-latin-name"></h2>
+            <p class="planet-circumference">
+            <p class="planet-distance"></p>
+            <p class="planet-temp-day"></p>
+            <p class="planet-temp-night"></p>
+            <p class="planet-moon"></p>
+        </div>
 
     <script src="index.js"></script>
 </body>

@@ -1,3 +1,5 @@
+bodyElem = document.querySelector('body');
+const planetsContainer = document.querySelector('.wrapper');
 //const API_KEY= 'solaris-1Cqgm3S6nlMechWO'
 
 /* async function getApiKey(){
@@ -18,8 +20,7 @@ async function getSolarisPlanets() {
 
 
     let planets = data.bodies;
-    console.log(planets);
-
+    console.log(planets)
     showPlanetsInfo(planets)
   } catch (error) {
     console.error('No planets found')
@@ -33,29 +34,45 @@ function showPlanetsInfo(planets) {
   // Ta bort imgg-tagg i loopen så letar loopen efter class som passar ihop med name i planets - array 
   planets.forEach(planet => {
     const getPlanetsInfo = document.querySelector(`.${planet.name.toLowerCase()}`);
-    console.log(getPlanetsInfo);
+
 
     if (getPlanetsInfo) {
-      getPlanetsInfo.addEventListener("click", () => {
-        console.log('clicked planet');
+      getPlanetsInfo.addEventListener('click', () => {
+
         displayPlanetInfo(planet);
       });
     }
   });
 }
 
-
-//bara temporärt
 function displayPlanetInfo(planet) {
-  alert(`
-  ${planet.name}
-  ${planet.type}
-  ${planet.rotation}
-  ${planet.latinName}
-  ${planet.temp.day - planet.temp.night}
-  ${planet.circumference}
-  ${planet.distance}
-  ${planet.orbitalPeriod}
-  ${planet.desc}
-  ${planet.moons}`);
+  const infoPage = document.createElement('div');
+  infoPage.classList.add('planet-info-page');
+
+  infoPage.innerHTML = `
+
+  <button class="close-button" onclick="closePlanetInfo()">&times;</button>
+
+<h1 class='planet-name'>${planet.name}</h2>
+<h2 class='planet-latin-name'>${planet.latinName}</h2>
+<p class='planet-description'>${planet.desc}</p>
+<p class='planet-circumference'> ${planet.circumference}</p>
+<p class='planet-distance'>${planet.distance}</p>
+<p class='planet-temp-day'>${planet.temp.day}</p>
+<p class='planet-temp-night'>${planet.temp.night}</p>
+<p class='planet-moon'>${planet.moons}</p>
+`;
+
+  bodyElem.appendChild(infoPage);
+
 }
+
+function closePlanetInfo() {
+  const infoPage = document.querySelector('.planet-info-page');
+  infoPage.remove();
+
+}
+
+
+
+
