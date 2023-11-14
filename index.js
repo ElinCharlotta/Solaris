@@ -1,5 +1,4 @@
 bodyElem = document.querySelector('body');
-const planetsContainer = document.querySelector('.wrapper');
 //const API_KEY= 'solaris-1Cqgm3S6nlMechWO'
 
 /* async function getApiKey(){
@@ -18,7 +17,6 @@ async function getSolarisPlanets() {
 
     const data = await response.json()
 
-
     let planets = data.bodies;
     console.log(planets)
     showPlanetsInfo(planets)
@@ -29,12 +27,10 @@ async function getSolarisPlanets() {
 getSolarisPlanets();
 
 
-//Tips från Christoffer dynamiskt -  loopa igenom - matcha ihop direkt med HTML
 function showPlanetsInfo(planets) {
-  // Ta bort imgg-tagg i loopen så letar loopen efter class som passar ihop med name i planets - array 
+
   planets.forEach(planet => {
     const getPlanetsInfo = document.querySelector(`.${planet.name.toLowerCase()}`);
-
 
     if (getPlanetsInfo) {
       getPlanetsInfo.addEventListener('click', () => {
@@ -50,19 +46,25 @@ function displayPlanetInfo(planet) {
   infoPage.classList.add('planet-info-page');
 
   infoPage.innerHTML = `
-
+  <main class='planets-info'>
   <button class="close-button" onclick="closePlanetInfo()">&times;</button>
 
-<h1 class='planet-name'>${planet.name}</h2>
-<h2 class='planet-latin-name'>${planet.latinName}</h2>
-<p class='planet-description'>${planet.desc}</p>
-<p class='planet-circumference'> ${planet.circumference}</p>
-<p class='planet-distance'>${planet.distance}</p>
-<p class='planet-temp-day'>${planet.temp.day}</p>
-<p class='planet-temp-night'>${planet.temp.night}</p>
-<p class='planet-moon'>${planet.moons}</p>
-`;
+<h1 class='planet-name' style='text-transform: uppercase;'>${planet.name}</h1>
+<h2 class='planet-latin-name' style='text-transform: uppercase;'> ${planet.latinName}</h2>
 
+<p class='planet-description'> ${planet.desc}</p>
+
+<article class="quick-info">
+<p class='planet-circumference'>OMKRETS<br> ${planet.circumference}</p>
+<p class='planet-distance'>KM FRÅN SOLEN<br> ${planet.distance}</p>
+<p class='planet-temp-day'>MINSTA TEMPERATUR <br> ${planet.temp.night}</p>
+<p class='planet-temp-night'>HÖGSTA TEMPERATUR <br> ${planet.temp.day}</p>
+</article>
+<p class='planet-moon'>MÅNAR<br>${planet.moons.join(',  ').split(' ').join('&nbsp;')}</p>
+</main>
+
+`;
+  console.log(planet.moons)
   bodyElem.appendChild(infoPage);
 
 }
@@ -72,7 +74,3 @@ function closePlanetInfo() {
   infoPage.remove();
 
 }
-
-
-
-

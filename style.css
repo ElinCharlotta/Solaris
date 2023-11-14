@@ -1,20 +1,27 @@
 body {
-    width: 100vw;
-    height: 100vh;
+    width: 95vw;
+    height: 50vh;
     background: linear-gradient(90deg, #0C164D 0%, #190B22 100%);
+}
+
+.wrapper {
+    max-width: 2000px;
 }
 
 header {
     text-align: right;
     font-family: Secular One;
-    margin: 3rem;
+    margin-top: 3rem;
     align-items: end;
     letter-spacing: 5.4px;
     font-weight: 400;
     line-height: 100%;
+    padding-bottom: 0px;
 }
 
 h1 {
+    margin: 0;
+    margin-bottom: 0.5rem;
     font-family: 'Secular One', sans-serif;
     color: #FFF;
     font-size: 60px;
@@ -25,6 +32,7 @@ h1 {
 }
 
 h2 {
+    margin: 0;
     font-family: 'Lora', sans-serif;
     color: #FFD029;
     font-family: Lora;
@@ -38,15 +46,16 @@ h2 {
 p {
     font-family: 'Roboto Condensed', sans-serif;
     color: #FFF;
-    font-size: 18px;
+    font-size: 16px;
     font-style: normal;
-    font-weight: 300;
     line-height: 170%;
+    font-weight: 300;
+
 }
 
 .all-planets {
     display: grid;
-    grid-template-columns: repeat(9, 1fr);
+    grid-template-columns: repeat(9, auto);
     align-items: center;
     justify-items: center;
 
@@ -54,15 +63,11 @@ p {
 
 .solen {
     background-color: #ffd029;
-    height: 100vh;
+    height: 60vh;
     width: 1000%;
     border-radius: 1000px;
     transform: translateX(-62%);
     margin-right: -300px;
-}
-
-.saturnus {
-    margin-bottom: 110px;
 }
 
 .saturn_body {
@@ -71,22 +76,49 @@ p {
 }
 
 .saturn_ring {
-    transform: translate(-0%, 118%);
+    margin-left: -200px;
+    transform: translate(188px, -11px);
 }
 
 .planet-info-page {
-    padding: 2rem;
     position: fixed;
-    top:0;
-    left:0;
-    margin-left: auto;
-    margin-right: auto;
+    top: 0;
+    left: 0;
     display: flex;
     flex-direction: column;
-    align-content: center;
     width: 100%;
     height: 100%;
     background: linear-gradient(90deg, #0C164D 0%, #190B22 100%);
     overflow: auto;
+}
 
+.planets-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    margin: 0 auto;
+    height: 100%;
+    width: 100%;
+    max-width: 840px;
+}
+
+.close-button {
+    display: flex;
+    justify-self: flex-end;
+    width: 1, 5rem;
+    margin-left: auto;
+    margin-right: 3rem;
+    background-color: transparent;
+}
+
+.quick-info {
+    border-top: solid 3px #FFF;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    border-bottom: solid 3px #FFF;
+}
+
+.planet-moon {
+    overflow-wrap: break-word;
 }
