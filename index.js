@@ -1,33 +1,32 @@
-bodyElem = document.querySelector('body');
-//const API_KEY= 'solaris-1Cqgm3S6nlMechWO'
+let bodyElem = document.querySelector('body');
 
-/*async function getApiKey() {
-  let resp = await fetch("https://n5n3eiyjb0.execute-api.eu-north-1.amazonaws.com/keys", {
-    method: "POST"
-  });
-  const data = await resp.json();
-  console.log(data);
-  getSolarisPlanets(data.apiKey)
-}catch (error){console.error('No key found)}
-getApiKey()*/
-
-async function getSolarisPlanets() {
+async function getApiKey() {
   try {
-    let response = await fetch("https://n5n3eiyjb0.execute-api.eu-north-1.amazonaws.com/bodies", {
-      method: "GET",
-      headers: { "x-zocom": "solaris-1Cqgm3S6nlMechWO" },
+    let resp = await fetch("https://n5n3eiyjb0.execute-api.eu-north-1.amazonaws.com/keys", {
+      method: "POST"
     });
-
-    const data = await response.json()
-
-    let planets = data.bodies;
-    console.log(planets)
-    attachPlanetClick(planets)
+    const data = await resp.json();
+    getSolarisPlanets(data.key);
   } catch (error) {
-    console.error('No planets found')
+    console.error('Error fetching API key');
   }
 }
-getSolarisPlanets();
+
+async function getSolarisPlanets(key) {
+  try {
+    let response = await fetch("https://n5n3eiyjb0.execute-api.eu-north-1.amazonaws.com/bodies", {
+      headers: { "x-zocom": `${key}` },
+    });
+
+    const data = await response.json();
+    let planets = data.bodies;
+
+    attachPlanetClick(planets);
+  } catch (error) {
+    console.error('No planets found');
+  }
+}
+getApiKey();
 
 
 function attachPlanetClick(planets) {
@@ -46,13 +45,17 @@ function attachPlanetClick(planets) {
 
 
 function displayPlanetInfo(planet) {
+  /* creates dynamic HTML good for this case when I want to display different information about various planets. Makes adding variables and conditions easier*/
   const infoPage = document.createElement('div');
   infoPage.classList.add('planet-info-page');
 
+  //checks if the information about the planets are relevant. ex. If planet have no moons that section will be removed
   let planetsMoonInfo = '';
   let planetDistanceInfo = '';
   let temperatureSection = '';
 
+
+  // (&nbsp;)= non-breaking spaces. if moon have a name with multiple words. It do not break up the name with a comma and two spacces. 
   if (planet.moons.length > 0) {
     planetsMoonInfo = `<p class='planet-moon'>MÅNAR<br>${planet.moons.join(',  ').split(' ').join('&nbsp;')}</p>`;
   }
@@ -61,12 +64,14 @@ function displayPlanetInfo(planet) {
     planetDistanceInfo = `<p class='planet-distance'>KM FRÅN SOLEN<br>${planet.distance}</p>`;
   }
 
+
+  // apply to the sunPage only. So I can style the sunPage differently than the other Planetes pages
   if (planet.name.toLowerCase() === 'solen') {
 
     temperatureSection = `
   <p class='planet-temp-day'>LÄGSTA TEMPERATUR <br>${planet.temp.night}</p>
   <p class='planet-temp-night'>HÖGSTA TEMPERATUR <br>${planet.temp.day}</p>`;
-    infoPage.classList.add('info-solen')
+    infoPage.classList.add('info-solen') // create a new class so I can style info about the sun in CSS
   }
   else {
     temperatureSection = `
@@ -74,6 +79,7 @@ function displayPlanetInfo(planet) {
   <p class='planet-temp-night'>HÖGSTA TEMPERATUR <br>${planet.temp.day}</p>`
 
   }
+
 
   infoPage.innerHTML = `
     <main class='planets-info'>
