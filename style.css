@@ -27,14 +27,6 @@ body {
 }
 
 
-
-
-
-
-
-
-.wrapper {}
-
 header {
     text-align: right;
     font-family: Secular One;
@@ -82,9 +74,11 @@ p {
 
 
 .all-planets {
+   
     display: grid;
     grid-template-columns: repeat(9, auto);
     align-items: center;
+
 }
 
 .solen {

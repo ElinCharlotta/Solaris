@@ -49,6 +49,34 @@ function displayPlanetInfo(planet) {
   const infoPage = document.createElement('div');
   infoPage.classList.add('planet-info-page');
 
+  const returnedSpecialInfo = specialInfo(planet, infoPage);
+
+  infoPage.innerHTML = `
+    <main class='planets-info'>
+      <button class="close-button" onclick="closePlanetInfo()">&times;</button>
+
+      <h1 class='planet-name' style='text-transform: uppercase;'>${planet.name}</h1>
+      <h2 class='planet-latin-name' style='text-transform: uppercase;'> ${planet.latinName}</h2>
+
+      <p class='planet-description'> ${planet.desc}</p>
+
+      <article class="quick-info">
+        <p class='planet-circumference'>OMKRETS<br>${planet.circumference}</p>
+        ${returnedSpecialInfo.planetDistanceInfo}
+     
+        ${returnedSpecialInfo.temperatureSection}
+      </article>
+
+      ${returnedSpecialInfo.planetsMoonInfo}
+    </main>
+  `;
+
+  bodyElem.appendChild(infoPage);
+}
+
+
+function specialInfo(planet, infoPage) {
+
   //checks if the information about the planets are relevant. ex. If planet have no moons that section will be removed
   let planetsMoonInfo = '';
   let planetDistanceInfo = '';
@@ -79,31 +107,8 @@ function displayPlanetInfo(planet) {
   <p class='planet-temp-night'>HÖGSTA TEMPERATUR <br>${planet.temp.day}</p>`
 
   }
-
-
-  infoPage.innerHTML = `
-    <main class='planets-info'>
-      <button class="close-button" onclick="closePlanetInfo()">&times;</button>
-
-      <h1 class='planet-name' style='text-transform: uppercase;'>${planet.name}</h1>
-      <h2 class='planet-latin-name' style='text-transform: uppercase;'> ${planet.latinName}</h2>
-
-      <p class='planet-description'> ${planet.desc}</p>
-
-      <article class="quick-info">
-        <p class='planet-circumference'>OMKRETS<br>${planet.circumference}</p>
-        ${planetDistanceInfo}
-     
-        ${temperatureSection}
-      </article>
-
-      ${planetsMoonInfo}
-    </main>
-  `;
-
-  bodyElem.appendChild(infoPage);
+  return { planetsMoonInfo, planetDistanceInfo, temperatureSection };
 }
-
 
 function closePlanetInfo() {
   const infoPage = document.querySelector('.planet-info-page');
